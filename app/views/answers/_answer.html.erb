@@ -1,7 +1,10 @@
 <h3><%= answer.name %></h3>
 <p><%= answer.response %></p>
 <p><%= time_ago_in_words(answer.created_at) %> Ago.</p>
-<%= link_to 'Delete', [answer.question, answer],
+
+<% if user_signed_in? %> 
+	<%= link_to 'Delete', [answer.question, answer],
 						method: :delete,
 						class: "button",
 						data: { confirm: 'Are you sure?' } %>
+<% end %>

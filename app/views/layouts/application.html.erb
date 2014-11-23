@@ -18,20 +18,24 @@
 		<li class="category"><%= link_to "Home", root_path %></li>
 		<li><%= link_to "About", about_path %></li>
 	</ul>
-
-	<p class = "signin">Sign in</p>
 	
-	<div class="buttons">
+	<% if user_signed_in? %>
+		<div class="buttons">
 			<%= link_to "New question", new_question_path %>
-			<button class="button">Log out</button>
-	</div>
+			<%= link_to('Logout', destroy_user_session_path, :method => :delete) %>        
+		</div>
+	<% else %>
+  	<li>
+  		<%= link_to('Login', new_user_session_path)  %>  
+  	</li>
+	<% end %>
 
 	<% if current_page?(root_path) %>
-    	<p>All Questions</p>
+   	<p>All Questions</p>
   <% elsif current_page?(about_path) %>
-    	<p>About</p>
+   	<p>About</p>
   <% else %>
-    	<%= link_to "Back to All Questions", root_path %>
+   	<%= link_to "Back to All Questions", root_path %>
   <% end %>
 	
 </div>
