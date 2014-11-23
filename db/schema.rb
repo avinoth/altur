@@ -11,10 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141122112111) do
+ActiveRecord::Schema.define(version: 20141123075100) do
+
+  create_table "answers", force: true do |t|
+    t.string   "name"
+    t.text     "response"
+    t.integer  "question_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "answers", ["question_id"], name: "index_answers_on_question_id"
 
   create_table "questions", force: true do |t|
-    t.text     "content"
+    t.text     "question"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

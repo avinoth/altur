@@ -1,4 +1,8 @@
 Altur::Application.routes.draw do
-  resources :questions
+  #Nested routes for answers
+  resources :questions do
+    resources :answers
+  end
+
   root "questions#index"
 end

@@ -1,8 +1,14 @@
 <p class="title">
-	<%= @question.content %>
+	<%= @question.question %>
 </p>
 
 <p class="date">
 	Submitted <%= time_ago_in_words(@question.created_at) %> ago | <%= link_to "Edit", edit_question_path(@question) %> |
-	<%= link_to "Delete", question_path(@question), method: :delete, data: {confirm: 'Are you sure?'} %>
+	<%= link_to "Delete", question_path(@question), method: :delete, data: {confirm: 'Are you sure?'} %> |
 </p>
+
+<h2><%= @question.answers.count %> Responses</h2>
+<%= render @question.answers %>
+
+<h3>Add a Comment:</h3>
+<%= render "answers/form" %>
