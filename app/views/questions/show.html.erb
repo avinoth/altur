@@ -7,7 +7,7 @@
 	<% if current_user.id == @user %>
 		| <%= link_to "Edit", edit_question_path(@question) %> |
 		<%= link_to "Delete", question_path(@question), method: :delete, data: {confirm: 'Are you sure?'} %> |
-		written by <%= current_user.email %>
+		written by <%= link_to current_user.email, user_path(current_user) %>
 	<% else %>
 		<h4>Not a valid user Bro!</h4>
 	<% end %>

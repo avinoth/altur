@@ -55,6 +55,12 @@ class QuestionsController < ApplicationController
     redirect_to questions_path
   end
 
+  #Method to get posts sorted by user
+  def userview
+    @user = User.find(params[:user])
+    @questions = @user.questions
+  end
+
   private
     #Implementation of strong parameters, which draws a line which parameters to allow and which shouldn't.
     def question_params
