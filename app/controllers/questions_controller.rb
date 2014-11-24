@@ -13,7 +13,8 @@ class QuestionsController < ApplicationController
 
   #create methoed invoked from the form rendered by the new action
   def create
-    @question = Question.new(question_params)
+    @user = current_user
+    @question = @user.questions.new(question_params)
     @question.save
 
     if @question.save
@@ -26,6 +27,7 @@ class QuestionsController < ApplicationController
   #Show action for individual questions
   def show
     @question = Question.find(params[:id])
+    @user = @question.user_id
   end
 
   #Edit action renders edit.html.erb for Edit question

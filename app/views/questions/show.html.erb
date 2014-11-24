@@ -4,9 +4,12 @@
 
 <p class="date">
 	Submitted <%= time_ago_in_words(@question.created_at) %> ago 
-	<% if user_signed_in? %>
+	<% if current_user.id == @user %>
 		| <%= link_to "Edit", edit_question_path(@question) %> |
 		<%= link_to "Delete", question_path(@question), method: :delete, data: {confirm: 'Are you sure?'} %> |
+		written by <%= current_user.email %>
+	<% else %>
+		<h4>Not a valid user Bro!</h4>
 	<% end %>
 </p>
 
