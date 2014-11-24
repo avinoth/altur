@@ -27,7 +27,7 @@ class QuestionsController < ApplicationController
   #Show action for individual questions
   def show
     @question = Question.find(params[:id])
-    @user = @question.user_id
+    @user = User.find(@question.user_id)
   end
 
   #Edit action renders edit.html.erb for Edit question
