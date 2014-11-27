@@ -1,45 +1,65 @@
-<!DOCTYPE html>
-<html>
+<!DOCTYPE HTML>
+<html lang="en-US">
 <head>
-  <title>Altur</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<title>Altur</title>
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,400italic,300italic,300,700,700italic|Open+Sans+Condensed:300,700' rel="stylesheet" type='text/css'>
+  <!--[if IE 8]>
+	<link rel="stylesheet" type="text/css" href="style/css/ie8.css" media="all" />
+  <![endif]-->
+  <!--[if IE 9]>
+  	<link rel="stylesheet" type="text/css" href="style/css/ie9.css" media="all" />
+  <![endif]-->
+  	<script type="text/javascript">
+		$.backstretch("http://i.imgur.com/kuQed9n.jpg");
+	</script>
+
+
 </head>
+
 <body>
-<nav class="navbar">
-		<%= link_to root_path do %>
-			<%= image_tag "imagehere.jpg" %>
-		<% end %>
+
+<div class="scanlines"></div>
 
 
-	<div class="navlinks">
-
-
-		<% if user_signed_in? %>
-				<%= link_to 'My Questions', user_path(current_user) %>
-				<%= link_to "New question", new_question_path %>
-				Logged in as <%= current_user.email %>, Not You? 
-				<%= link_to('Logout', destroy_user_session_path, :method => :delete) %>
-		<% else %>
-	  		<%= link_to('Login', new_user_session_path)  %> or <%= link_to('Signup', new_user_registration_path) %>
-		<% end %>
-
+<div class="header-wrapper opacity">
+	<div class="header">
+		<!-- Begin Logo -->
+		<div class="logo">
+		    <%= link_to root_path do %>
+				<%= image_tag "obscura/logo.png" %>
+			<% end %>
+	    </div>
+		<!-- End Logo -->
+		<!-- Begin Menu -->
+		<div id="menu-wrapper">
+			<div id="menu" class="menu">
+				<ul id="tiny">
+					<% if user_signed_in? %>
+						<li><%= link_to "New question", new_question_path %></li>
+						<li><%= link_to 'My Questions', user_path(current_user) %></li>
+						<li><%= link_to('Logout', destroy_user_session_path, :method => :delete) %></li>
+					<% else %>
+						<li><%= link_to('Login', new_user_session_path)  %></li>
+						<li> or </li>
+						<li><%= link_to('Signup', new_user_registration_path) %></li>
+					<% end %>
+				</ul>
+			</div>
+		</div>
+		<div class="clear"></div>
+		<!-- End Menu -->
 	</div>
-</nav>
-
-	<% if current_page?(root_path) %>
-   	<p>All Questions</p>
-  <% elsif current_page?(about_path) %>
-   	<p>About</p>
-  <% else %>
-   	<%= link_to "Back to All Questions", root_path %>
-  <% end %>
-	
-
+</div>
+<!-- End Header -->
 
 <%= yield %>
 
-<footer><%= link_to "About", about_path %></footer>
+
+
 </body>
 </html>

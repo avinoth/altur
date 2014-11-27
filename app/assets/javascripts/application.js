@@ -12,5 +12,16 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery-ui/effect-blind
 //= require turbolinks
+//= require jquery.turbolinks
+//= require obscura/ddsmoothmenu
+//= require obscura/retina
+//= require obscura/selectnav
+//= require obscura/jquery.masonry.min
+//= require obscura/jquery.fitvids
+//= require obscura/jquery.backstretch.min
+//= require obscura/jquery.dcflickr.1.0
+//= require obscura/twitter.min
+//= require bootstrap
 //= require_tree .

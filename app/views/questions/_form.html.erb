@@ -1,4 +1,4 @@
-<%= form_for @question do |f| %>
+<%= form_for @question, :html => { :id => "commentform"}  do |f| %>
 	<% if @question.errors.any? %>
 		<div class="errors">
 			<h2><%= pluralize(@question.errors.count, "error") %> prevented from saving the file</h2>
@@ -9,8 +9,11 @@
 			</ul>
 		</div>
 	<% end %>
-	<%= f.label :question %><br>
-	<%= f.text_area :question %><br>
-	<%= f.submit %>
-
+	<p class="comment-form-comment">
+		<%= f.label :question %> <span class="required">*</span>
+		<%= f.text_area :question %>
+	</p>
+	<p>
+		<%= f.submit id: 'button' %>
+	</p>
 <% end %>

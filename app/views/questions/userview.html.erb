@@ -1,8 +1,26 @@
-<h3>Questions asked by <%= @user.email %> </h3>
+<div class="wrapper"><!-- Begin Intro -->
+<div class="intro">Questions asked by <%= @user.email %> </div>
+
+<!-- Begin Blog Grid -->
+<div class="blog-wrap">
+  <!-- Begin Blog -->
+  <div class="blog-grid">
+
+
+
 
 <% @questions.each do |question| %>
-	<div class="questionlist">
-		<h3 class="title"><%= link_to question.question, question %></h3>
-		<p class="date">created at  <%= question.created_at.strftime("%B, %d, %Y") %></p>
+	<div class="post format-standard box">
+		<h2 class="title"><%= link_to question.question, question %></h2>
+		<div class="details">
+			<p class="date">created at  <%= question.created_at.strftime("%B, %d, %Y") %> | 
+				<%= pluralize(question.answers.count, "answer") %>
+			</p>
+		</div>
 	</div>
 <% end %>
+</div>
+</div>
+</div>
+
+<br>
