@@ -23,5 +23,6 @@
 //= require obscura/jquery.backstretch.min
 //= require obscura/jquery.dcflickr.1.0
 //= require obscura/twitter.min
+//= require obscura/scripts
 //= require bootstrap
 //= require_tree .
