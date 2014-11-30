@@ -5,4 +5,13 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   has_many :questions, dependent: :destroy
+
+  def email_required?
+    false
+  end
+
+  def email_changed?
+    false
+  end
+
 end
