@@ -1,5 +1,5 @@
 class QuestionsController < ApplicationController
-  before_action :authenticate_user!, except: [:index, :show, :userview]
+  before_action :authenticate_user!, except: [:index, :show]
   
   #index action - lists all question sorted by newly created
   def index
