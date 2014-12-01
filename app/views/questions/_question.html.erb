@@ -1,0 +1,10 @@
+<% @questions.each do |question| %>
+	<div class="post format-standard box masonry-brick" style="position: absolute; width: 490px; top: 0px; left: 0px;">
+		<h2 class="title"><%= link_to question.question, question %></h2>
+		<div class="details">
+			<p class="date">created at  <%= question.created_at.strftime("%B, %d, %Y") %> | 
+				<%= pluralize(question.answers.count, "answer") %>
+			</p>
+		</div>
+	</div>
+<% end %>

@@ -3,7 +3,7 @@ class QuestionsController < ApplicationController
   
   #index action - lists all question sorted by newly created
   def index
-    @questions = Question.all.order('created_at DESC')
+    @questions = Question.paginate(page: params[:page], per_page: 15).order('created_at DESC')
   end
 
   #New action renders new.html.erb for new Question creation
@@ -15,12 +15,15 @@ class QuestionsController < ApplicationController
   def create
     @user = current_user
     @question = @user.questions.new(question_params)
-    @question.save
-
-    if @question.save
-      redirect_to @question, notice: "Question successfully created"
-    else
-      render'new'
+    
+    respond_to do |format|
+      if @question.save
+        format.html { redirect_to @question, notice: 'Question successfully created.' }
+        format.json { render action: 'show', status: :created, location: @question }
+      else
+        format.html { render action: 'new' }
+        format.json { render json: @question.errors, status: :unprocessable_entity }
+      end
     end
   end
 
@@ -38,12 +41,14 @@ class QuestionsController < ApplicationController
   #update method invoked from the form rendered by the edit action
   def update
     @question = Question.find(params[:id])
- 
-    if @question.update(question_params)
-      #redirect to show action
-      redirect_to @question
-    else
-      render 'edit'
+    respond_to do |format|
+      if @question.update(question_params)
+        format.html { redirect_to @question, notice: 'Question successfully updated.' }
+        format.json { head :no_content}
+      else
+        format.html { render action: 'edit' }
+        format.json { render json: @question.errors, status: :unprocessable_entity }
+      end
     end
   end
 
@@ -51,8 +56,10 @@ class QuestionsController < ApplicationController
   def destroy
     @question = Question.find(params[:id])
     @question.destroy
-
-    redirect_to questions_path
+    respond_to do |format|
+      format.html { redirect_to questions_url }
+      fotmat.json { head :no_content }
+    end
   end
 
   #Method to get posts sorted by user
