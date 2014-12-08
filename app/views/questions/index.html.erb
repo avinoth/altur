@@ -3,13 +3,14 @@
 <div class="blog-wrap">
   <!-- Begin Blog -->
 
-<div class="blog-grid masonry" style="position: relative; height: 122px; visibility: visible;">
+<div class="blog-grid" id="quests" style="position: relative; height: 122px; visibility: visible;">
 
 <%= render 'question' %>
 
 </div>
-
-<%= will_paginate %>
+<div id="infinite_scroll">
+	<%= will_paginate %>
+</div>
 </div>
 
 <br>

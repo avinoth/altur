@@ -4,6 +4,10 @@ class QuestionsController < ApplicationController
   #index action - lists all question sorted by newly created
   def index
     @questions = Question.paginate(page: params[:page], per_page: 15).order('created_at DESC')
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   #New action renders new.html.erb for new Question creation
